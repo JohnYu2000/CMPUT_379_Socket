@@ -1,0 +1,29 @@
+.TH CLIENT 1 "NOVEMBER 2022" LINUX "USER MANUAL"
+.SH NAME
+client -\ Reads input from the user and sends data to the server.
+.SH SYNOPSIS
+.B client
+.I port
+.I ip_address
+.B
+.SH DESCRIPTION
+.B client
+will receive user input either as command line input or through a file. Each command is processed by the client and sent to the server to be processed. The client connects to the server using the
+.I port
+number and the
+.I ip_address
+of the server. When the user inputs a transaction the integer parameter, client machine name, and client pid are sent to the server to be processed. The server will return to the client the transaction id. When the user inputs a sleep command, the client will simply sleep and no data is communicated with the server. When the eof is reached, the client simply terminates.
+.SH EXAMPLES
+.B client
+.I 5000
+.I 129.128.29.32
+.B
+.RS
+Starts the client and connects to the server on port 5000 and ip_address 129.128.29.32.
+.RE
+.SH SEE ALSO
+.BR server(1)
+.SH BUGS
+When the server times out and stops receiving new connections, a new client that tries to connect will still show that it connected successfully.
+.SH AUTHOR
+John Yu

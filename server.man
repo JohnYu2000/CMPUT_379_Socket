@@ -1,0 +1,25 @@
+.TH SERVER 1 "NOVEMBER 2022" LINUX "USER MANUAL"
+.SH NAME
+server -\ Reads inputs from a client and sends data back to the client.
+.SH SYNOPSIS
+.B server
+.I port
+.B
+.SH DESCRIPTION
+.B server
+is responsible for accepting any new clients that try to connect. When a client successfully connects at the
+.I port
+number of the server the server will generate a new thread to help the client. The server will retrieve the integer parameter, the client machine name, and the client pid and log the data. The server will perform a transaction and return to the client the transaction id. The server will wait 30 seconds for either a new client connection or an activity from one of the already connected clients. If more than 30 seconds elapses from the last new connection or client activity, then server will stop accepting new clients. The server will continue to help any clients that are still connected to the server. Once all the clients have finished execution the server will terminate and log a summary of the connection session.
+.SH EXAMPLES
+.B server
+.I 5000
+.B
+.RS
+Starts the server on port 5000.
+.RE
+.SH SEE ALSO
+.BR client(1)
+.SH BUGS
+The server will timeout after 30 seconds of inactivity. However, the timer only resets when a new client connects or when a client disconnects. Sending and receiving transactions to the server do not appear to reset the timer.
+.SH AUTHOR
+John Yu
